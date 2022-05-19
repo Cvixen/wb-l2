@@ -1,2 +1,0 @@
-Parse parses the command-line flags from os.Args. Must be called
-after all flags are defined and before flags are accessed by the program.

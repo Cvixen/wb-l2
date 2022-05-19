@@ -48,7 +48,8 @@ func main() {
 		if len(str) == 0 {
 			break
 		}
-
+		//если в строке не содержится разделитель и нужно выводить строки только с разделителем, то пропускаем
+		//доб слова
 		if isSeparated {
 			if !strings.Contains(str, delimiter) {
 				continue

@@ -131,7 +131,7 @@ func sortByLengthDesc(f *flags, dataArr [][]string) {
 	})
 }
 
-// Сортировка по уменьшению, с учетом колонки по длине числовому значению
+// Сортировка по возрастанию, с учетом колонки по длине числовому значению
 func sortByNumAsc(f *flags, dataArr [][]string) {
 	sort.SliceStable(dataArr, func(i, j int) bool {
 		return dataArr[j][f.k] > dataArr[i][f.k]
@@ -159,7 +159,7 @@ func sortFullByLengthDesc(f *flags, dataArr []string) {
 	})
 }
 
-// Сортировка по уменьшению, по длине числовому значению
+// Сортировка по возрастанию, по длине числовому значению
 func sortFullByNumAsc(f *flags, dataArr []string) {
 	sort.SliceStable(dataArr, func(i, j int) bool {
 		return dataArr[j] > dataArr[i]

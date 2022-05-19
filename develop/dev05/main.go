@@ -46,7 +46,6 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-
 	tempStr := strings.Split(string(data), "\n")
 	text := make([]string, 0, len(tempStr))
 
@@ -80,11 +79,11 @@ func main() {
 	if *before > 0 {
 		for _, v := range arr {
 			if *before > v {
-				fmt.Println(strings.Join(text[:v+1], "\n"))
+				fmt.Println(strings.Join(text[:v+1], "\n")) //саму строку печатаем
 				fmt.Println()
 				continue
 			}
-			fmt.Println(strings.Join(text[v-*before:v+1], "\n"))
+			fmt.Println(strings.Join(text[v-*before:v+1], "\n")) // печатаем до строки + саму строку
 			fmt.Println()
 		}
 	}
@@ -92,15 +91,15 @@ func main() {
 	if *after > 0 {
 		for _, v := range arr {
 			if len(text[v:])-1 < *after {
-				fmt.Println(strings.Join(text[v:], "\n"))
+				fmt.Println(strings.Join(text[v:], "\n")) // печатаем саму строку
 				fmt.Println()
 				continue
 			}
-			fmt.Println(strings.Join(text[v:v+*after+1], "\n"))
+			fmt.Println(strings.Join(text[v:v+*after+1], "\n")) // печатаем сама + после
 			fmt.Println()
 		}
 	}
-
+	// after + before
 	if *contextText > 0 {
 		for _, v := range arr {
 			if *contextText > v {
@@ -123,23 +122,23 @@ func main() {
 	}
 
 	if *invert {
-
+		// выводим строки до первого найденного элемента
 		if arr[0] != 0 {
 			fmt.Println(strings.Join(text[:arr[0]], "\n"))
 		}
 		for i, v := range arr {
-
+			// пропуск найденного элекмента
 			if arr[0] == v {
 				continue
 			}
-
+			// если разница между индексам 1, то тоже пропускаем
 			if arr[i-1]-arr[i] == 1 {
 				continue
 			}
-
+			// выводим строки между найденными
 			fmt.Println(strings.Join(text[arr[i-1]+1:arr[i]], "\n"))
 		}
-
+		// если последний элемент не равен, количеству всех строк, выводим остальное
 		if arr[len(arr)-1] != len(text)-1 {
 			fmt.Println(strings.Join(text[arr[len(arr)-1]+1:], "\n"))
 		}
@@ -149,7 +148,7 @@ func main() {
 			fmt.Println(val)
 		}
 	}
-
+	//Чтобы не печатло 2-й раз, если есть совпадения
 	if *after > 0 || *before > 0 || *contextText > 0 || *countBool || *lineNum {
 		return
 	}
